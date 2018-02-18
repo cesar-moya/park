@@ -23,8 +23,16 @@ export class HeroesComponent implements OnInit {
   // }
 
   getHeroes():void{
+    console.log("inside get heroes on component");
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes)
+        .subscribe(
+            heroes => {
+              //console.log("test");
+              this.heroes = heroes;
+              //console.log("heroes: " + this.heroes[0].name);
+            }
+        );
+    
     //this.heroes = this.heroService.getHeroes();
   }
 
