@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,8 @@ import { InMemoryDataService } from './in-memory-data.service';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
+  //The providers array tells Angular to create a single, 
+  //shared instance of HeroService and inject into any class that asks for it.
   providers: [HeroService, MessageService],
   bootstrap: [AppComponent]
 })

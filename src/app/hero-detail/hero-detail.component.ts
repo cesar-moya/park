@@ -22,6 +22,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero() : void{
+    //The JavaScript (+) operator converts the string to a number
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id).subscribe(hero => this.hero = hero);
   }
