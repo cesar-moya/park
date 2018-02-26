@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Hero } from '../hero'
 import { HeroService } from '../hero.service'
 
@@ -23,19 +23,31 @@ export class HeroesComponent implements OnInit {
   // }
 
   getHeroes():void{
-    console.log("inside get heroes on component");
     this.heroService.getHeroes()
         .subscribe(
             heroes => {
-              //console.log("test");
               this.heroes = heroes;
-              //console.log("heroes: " + this.heroes[0].name);
             }
         );
-    
-    //this.heroes = this.heroService.getHeroes();
   }
 
-  
+  add(name : string):void{
+    name = name.trim();
+    if(!name){
+      alert('Please write a name');
+      return;
+    }
+    let newHero = {name} as Hero;
+    this.heroService.addHero(newHero)
+      .subscribe(
+        hero => {
+          this.heroes.push(hero);
+        }
+      );
+  }
 
+  delete(hero : Hero){
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }
